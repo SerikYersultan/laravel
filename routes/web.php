@@ -11,3 +11,12 @@ Route::get('/', function () {
     // Функция compact упаковывает переменные и отправляет их в view
     return view('welcome', compact('name', 'role', 'skills'));
 });
+Route::get('/inactive', function () {
+    return 'Your account is inactive.';
+});
+
+Route::middleware(['check.account'])->group(function () {
+    Route::get('/dashboard', function () {
+        return 'Welcome to dashboard!';
+    });
+});
